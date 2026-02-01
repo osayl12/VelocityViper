@@ -1,0 +1,33 @@
+name: CI
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+
+jobs:
+  docker-build-and-smoke:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Build image
+        run: docker build -t project-b:ci .
+
+      - name: Run container
+        run: docker run -d --name project-b-ci -p 8082:80 project-b:ci
+
+      - name: Smoke test
+        run: |
+          sleep 2
+          curl -f http://localhost:8082/menugame/menu.html
+          curl -f http://localhost:8082/ingame/game.html
+
+      - name: Logs on failure
+        if: failure()
+        run: docker logs project-b-ci || true
+
+      - name: Cleanup
+        if: always()
+        run: docker rm -f project-b-ci || true
