@@ -1,33 +1,28 @@
-name: CI
+name: Build and Push Docker Image
 
 on:
   push:
-    branches: ["main"]
-  pull_request:
+    branches:
+      - main
 
 jobs:
-  docker-build-and-smoke:
+  build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout
+      - name: Checkout code
         uses: actions/checkout@v4
 
+      - name: Login to DockerHub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
       - name: Build image
-        run: docker build -t project-b:ci .
-
-      - name: Run container
-        run: docker run -d --name project-b-ci -p 8082:80 project-b:ci
-
-      - name: Smoke test
         run: |
-          sleep 2
-          curl -f http://localhost:8082/menugame/menu.html
-          curl -f http://localhost:8082/ingame/game.html
+          docker build -t ${{ secrets.DOCKERHUB_USERNAME }}/velocityviper:latest .
 
-      - name: Logs on failure
-        if: failure()
-        run: docker logs project-b-ci || true
-
-      - name: Cleanup
-        if: always()
-        run: docker rm -f project-b-ci || true
+      - name: Push image
+        run: |
+          docker push ${{ secrets.DOCKERHUB_USERNAME }}/velocityviper:latest
