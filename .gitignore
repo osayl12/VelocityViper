@@ -1,66 +1,10 @@
-# =========================
-# Node
-# =========================
-node_modules/
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-pnpm-debug.log*
-
-# Environment variables
-.env
-.env.local
-.env.*.local
-
-# Build output
-dist/
-build/
-coverage/
-
-# =========================
 # Logs
-# =========================
-logs
 *.log
 
-# =========================
-# OS files
-# =========================
+# OS
 .DS_Store
 Thumbs.db
 
-# =========================
-# VS Code
-# =========================
+# IDE
 .vscode/
-
-# =========================
-# JetBrains
-# =========================
 .idea/
-
-# =========================
-# Docker
-# =========================
-docker-compose.override.yml
-
-
-# =========================
-# Temporary files
-# =========================
-*.tmp
-*.swp
-*.swo
-
-# =========================
-# SSH / Keys (VERY IMPORTANT)
-# =========================
-*.pem
-*.key
-id_rsa
-id_rsa.pub
-
-# =========================
-# GitHub
-# =========================
-.github/workflows/*.log
