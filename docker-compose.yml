@@ -1,9 +1,9 @@
-version: "3.8"
+version: '3.8'
 
 services:
   velocityviper:
-    build: .
+    image: osayl1997/velocityviper:latest
     container_name: velocityviper
-    restart: always
     ports:
-      - "8080:80"
+      - "8081:80"
+    restart: always
