@@ -1,10 +1,22 @@
+/* =========================
+   Velocity Viper – Full CSS
+   ========================= */
+
 * {
-  height: 100%;
-  width: 100%;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
+
+html,
+body {
+  height: 100%;
+  overflow: hidden;
+}
+
+/* =========================
+   CONTAINER
+   ========================= */
 
 .container {
   position: relative;
@@ -12,16 +24,56 @@
   height: 100vh;
   overflow: hidden;
 }
+/* =========================
+   Controls Overlay 
+   ========================= */
+#controls-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 5000;
+}
 
-.fuel-percentage {
-  top: 20px;
-  right: 0px;
-  height: 10px;
+.controls-box {
+  text-align: center;
+  font-family: "Press Start 2P", cursive;
+  color: #ffcc00;
+  background: #000;
+  padding: 30px;
+  border: 3px solid #ffcc00;
+  border-radius: 10px;
+}
+
+.controls-box h2 {
+  margin-bottom: 20px;
+}
+
+.start-text {
+  margin-top: 20px;
+  font-size: 14px;
+  animation: blink 1s infinite;
+}
+
+@keyframes blink {
+  50% {
+    opacity: 0.3;
+  }
+}
+
+/* =========================
+   UI BARS
+   ========================= */
+
+.fuel-percentage,
+.health-bar {
+  height: 30px;
   width: 170px;
   font-family: "Press Start 2P", cursive;
   font-size: 10px;
   text-align: center;
-  margin: 5px;
   padding: 5px;
   border: 2px solid #ffcc00;
   background-color: #000;
@@ -29,43 +81,73 @@
   border-radius: 5px;
   position: absolute;
   z-index: 999;
+}
+
+.fuel-percentage {
+  top: 20px;
+  right: 20px;
 }
 
 .health-bar {
   top: 20px;
-  right: 0px;
-  height: 10px;
-  left: 0px;
-  width: 170px;
-  font-family: "Press Start 2P", cursive;
-  font-size: 10px;
-  text-align: center;
-  margin: 5px;
-  padding: 5px;
-  border: 2px solid #ffcc00;
-  background-color: #000;
-  color: #ffcc00;
-  border-radius: 5px;
-  position: absolute;
-  z-index: 999;
+  left: 20px;
 }
-#fuel-cooldown,
-#heal-cooldown {
-  position: absolute;
-  top: 0;
-  height: 10px;
-  width: 170px;
-  font-family: "Press Start 2P", cursive;
-  font-size: 10px;
-  text-align: center;
-  margin: 5px;
-  padding: 5px;
-  border: 2px solid #ffcc00;
-  background-color: #000;
-  color: #ffcc00;
-  border-radius: 5px;
-  z-index: 999;
+
+/*Shield Effect*/
+.shield-active .car {
+  animation: shieldPulse 1s infinite alternate;
+  box-shadow: 0 0 30px cyan;
 }
+
+@keyframes shieldPulse {
+  from { box-shadow: 0 0 10px cyan; }
+  to   { box-shadow: 0 0 40px cyan; }
+}
+
+/*Speed Boost Effect*/
+.boost-active .car {
+  box-shadow: 0 0 25px #00ffff;
+}
+
+.boost-trail {
+  position: absolute;
+  width: 50px;
+  height: 100px;
+  background: rgba(0,255,255,0.3);
+  filter: blur(10px);
+  z-index: 1;
+  animation: fadeTrail 0.5s forwards;
+}
+
+@keyframes fadeTrail {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+/* Power Popup */
+.power-popup {
+  position: fixed;
+  top: 40%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: "Press Start 2P", cursive;
+  font-size: 20px;
+  color: #ffcc00;
+  background: #000;
+  padding: 20px;
+  border: 3px solid #ffcc00;
+  z-index: 6000;
+  animation: fadeOut 1.5s forwards;
+}
+
+@keyframes fadeOut {
+  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -60%) scale(1.2); }
+}
+
+/* =========================
+   BACKGROUND
+   ========================= */
 
 .street-img {
   position: absolute;
@@ -87,13 +169,17 @@
   background-color: #444;
 }
 
+/* =========================
+   TREES
+   ========================= */
+
 .left-trees,
 .right-trees {
   position: absolute;
   width: 100%;
   height: 100%;
   top: 0;
-  z-index: 1; /* important */
+  z-index: 1;
 }
 
 .left-trees {
@@ -103,8 +189,12 @@
   right: 0;
 }
 
+/* =========================
+   CAR
+   ========================= */
+
 .car {
-  z-index: 1;
+  z-index: 2;
   margin: 30px;
   position: absolute;
   width: 50px;
@@ -114,13 +204,16 @@
   background-size: cover;
 }
 
+/* =========================
+   SCORE
+   ========================= */
+
 .Score {
-  height: 30px;
+  height: 40px;
   width: 150px;
   font-family: "Press Start 2P", cursive;
   font-size: 15px;
   text-align: center;
-  margin: 5px;
   padding: 5px;
   border: 2px solid #ffcc00;
   background-color: #000;
@@ -128,9 +221,14 @@
   border-radius: 5px;
   position: absolute;
   z-index: 999;
-  right: 0px;
-  bottom: 0px;
+  right: 0;
+  bottom: 0;
+  margin: 5px;
 }
+
+/* =========================
+   ROAD LINES
+   ========================= */
 
 .lines,
 .lines2,
@@ -142,7 +240,6 @@
   top: 0;
 }
 
-/* middle dashed lines */
 .lines {
   left: 30%;
   background: white;
@@ -153,7 +250,6 @@
   background: white;
 }
 
-/* road borders */
 .leftline {
   left: 0;
   background: rgb(217, 255, 0);
@@ -164,74 +260,6 @@
   background: rgb(217, 255, 0);
 }
 
-.EnemyCar {
-  position: absolute;
-  width: 50px;
-  height: 100px;
-  transition: transform 0.2s ease;
-  transform-origin: center center;
-
-  background-size: contain;
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.popup-message {
-  position: fixed;
-  top: 30px;
-  left: 45%;
-  transform: translate(-50%, -50%);
-  background-color: rgba(0, 0, 0, 0.7);
-  color: white;
-  border-radius: 10px;
-  display: none;
-  z-index: 999;
-  font-family: "Arial", sans-serif;
-  text-align: center;
-  font-size: 20px;
-  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  height: auto;
-  width: auto;
-  padding: 5px;
-}
-
-.popup-message::before {
-  content: "\1F3CE";
-  font-size: 30px;
-  display: block;
-  color: #ff9900;
-}
-
-.highlight-key {
-  color: #ff9900;
-  font-weight: bold;
-  font-size: 30px;
-}
-
-.mystery-box {
-  background-size: contain;
-  background-repeat: no-repeat;
-  width: 80px;
-  height: 80px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  cursor: pointer;
-  overflow: hidden;
-}
-
-.mystery-box img {
-  width: 100%;
-  height: auto;
-  z-index: 1;
-}
-
-.mystery-box:hover {
-  border: 2px solid #ff9900;
-  box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.7);
-  z-index: 3;
-}
 .vertical-line {
   position: absolute;
   width: 10px;
@@ -241,4 +269,198 @@
   transform: translateX(-50%);
   top: 0;
   z-index: 0;
+}
+
+/* =========================
+   ENEMY CARS
+   ========================= */
+
+.EnemyCar {
+  position: absolute;
+  width: 50px;
+  height: 100px;
+  transition: transform 0.2s ease;
+  transform-origin: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+/* =========================
+   MYSTERY BOX
+   ========================= */
+
+.mystery-box {
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 80px;
+  height: 80px;
+  position: absolute;
+  cursor: pointer;
+  overflow: hidden;
+}
+
+.mystery-box img {
+  width: 100%;
+  height: auto;
+}
+
+.mystery-box:hover {
+  border: 2px solid #ff9900;
+  box-shadow: 0 0 10px rgba(255, 0, 0, 0.7);
+}
+
+/* =========================
+   PAUSE OVERLAY
+   ========================= */
+
+#pause-overlay,
+#countdown-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.pause-text,
+#countdown-text {
+  font-size: 60px;
+  color: #ffcc00;
+  font-family: "Press Start 2P", cursive;
+  text-shadow: 0 0 20px #ffcc00;
+}
+
+/* =========================
+   TOUCH CONTROLS (PHONE)
+   ========================= */
+
+#touch-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 4000;
+}
+
+#touch-controls button {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  background: #000;
+  color: #ffcc00;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  #touch-controls {
+    display: flex;
+  }
+}
+
+/* =========================
+   PARTICLE SPARKS
+   ========================= */
+
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: orange;
+  border-radius: 50%;
+  animation: sparkMove 0.5s linear forwards;
+  z-index: 5000;
+}
+
+@keyframes sparkMove {
+  from {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(40px, -40px);
+    opacity: 0;
+  }
+}
+
+/* ---------- PAUSE + COUNTDOWN ---------- */
+
+#pause-overlay,
+#countdown-overlay {
+  position: fixed;
+  inset: 0;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 3000;
+  background: rgba(0, 0, 0, 0.5);
+}
+
+.pause-text,
+#countdown-text {
+  font-size: 60px;
+  color: #ffcc00;
+  font-family: "Press Start 2P", cursive;
+}
+
+/* ---------- TOUCH CONTROLS ---------- */
+
+#touch-controls {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  z-index: 4000;
+}
+
+#touch-controls button {
+  width: 60px;
+  height: 60px;
+  font-size: 24px;
+  border: none;
+  border-radius: 10px;
+  background: #000;
+  color: #ffcc00;
+  opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+  #touch-controls {
+    display: flex;
+  }
+}
+
+/* ---------- PARTICLES ---------- */
+
+.spark {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  background: orange;
+  border-radius: 50%;
+  animation: sparkMove 0.5s linear forwards;
+  z-index: 5000;
+}
+
+@keyframes sparkMove {
+  from {
+    transform: translate(0, 0);
+    opacity: 1;
+  }
+  to {
+    transform: translate(40px, -40px);
+    opacity: 0;
+  }
 }
