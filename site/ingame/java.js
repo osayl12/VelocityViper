@@ -314,13 +314,16 @@ document.addEventListener("keyup", () => {
   verticalSpeed = 0;
 });
 
-document.addEventListener("keydown", function (event) {
-  if (event.code === "Space" && !gameStarted) {
-    const controlsOverlay = document.getElementById("controls-overlay");
+const controlsOverlay = document.getElementById("controls-overlay");
+
+if (controlsOverlay) {
+  controlsOverlay.addEventListener("click", () => {
     controlsOverlay.style.display = "none";
     startCountdown();
-  }
-});
+  });
+}
+
+
 
 /* ---------- ROAD LINES ---------- */
 const lines2Positions = [200, 0, -200, -400];
@@ -545,6 +548,7 @@ function showPowerMessage(type) {
 /* ---------- START ---------- */
 setupTouchControls();
 animate();
+
 
 /* ---------- GAME OVER ---------- */
 function gameOver() {
