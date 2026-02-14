@@ -1,17 +1,53 @@
-# Velocity Viper  🚗🎮
+# 🚗 Velocity Viper
 
-A simple browser racing game (menu + in-game) built with **HTML/CSS/JavaScript** and deployed as a **static website** using **Nginx + Docker**.
+A retro-style browser racing game built with **HTML, CSS, and Vanilla
+JavaScript**, fully containerized using **Docker** and deployed with
+**Nginx**.
 
-## Live Pages
-- Menu: `/menugame/menu.html`
-- Game: `/ingame/game.html`
+Live Demo: 👉 https://velocityviper.duckdns.org/menugame/menu.html
 
-## Tech Stack
-- Frontend: HTML, CSS, Vanilla JavaScript
-- Web server: Nginx (static hosting)
-- DevOps: Docker, Docker Compose, GitHub Actions (CI)
+Repository: 👉 https://github.com/osayl12/VelocityViper
+
+---
+
+## 🎮 About The Project
+
+Velocity Viper is a fully functional 2D top-down racing game that runs
+directly in the browser.
+
+The project demonstrates: - Frontend game logic (movement, collision
+detection, animations) - DOM manipulation and event handling - State
+management (fuel, health, score system) - Local storage usage (best
+score tracking) - Audio controls and dynamic music switching - Static
+site deployment using Nginx - Docker containerization - CI pipeline with
+GitHub Actions
+
+---
+
+## 🛠 Tech Stack
+
+Frontend: - HTML5 - CSS3 - Vanilla JavaScript (ES6)
+
+Infrastructure: - Nginx - Docker - Docker Compose - GitHub Actions
+
+---
+
+## 🧩 Game Features
+
+- Smooth car movement (horizontal, vertical, diagonal)
+- Collision detection with enemy cars
+- Health system
+- Fuel consumption system
+- Mystery box power-ups (heal / refuel)
+- Score counter with best score saved in localStorage
+- Background music with play/pause, volume control, track switching
+- Animated environment (trees and moving road lines)
+- Automatic redirection to menu on game over
+
+---
 
 ## Project Structure
+
 ```
 velocityviper/
 ├── site/
@@ -25,7 +61,6 @@ velocityviper/
 │   │   └── java.js
 │   ├── gamepics/        # images (cars, backgrounds, etc.)
 │   ├── menuaudio/       # audio files
-│   └── fonts/           # custom fonts
 ├── Dockerfile
 ├── docker-compose.yml
 └── .github/workflows/ci.yml
@@ -33,36 +68,29 @@ velocityviper/
 
 ## How to Run (Docker)
 
-### Option 1: Docker Compose (recommended)
-```bash
 docker compose up --build
-```
 
-Then open:
-- http://localhost:8082/menugame/menu.html
-- http://localhost:8082/ingame/game.html
+Open: http://localhost:8082/
 
-### Option 2: Docker directly
-```bash
-docker build -t velocity-viper .
-docker run --rm -p 8082:80 velocity-viper
-```
+---
+
+## 🐳 Run On Web
+
+Link to the web: https://velocityviper.duckdns.org/
+
+---
 
 ## CI (GitHub Actions)
 
-This repository includes a CI workflow that:
-1. Builds the Docker image
-2. Runs the container
-3. Performs a smoke test by requesting:
-   - `/menugame/menu.html`
-   - `/ingame/game.html`
+T## ⚙️ CI
 
-Workflow file:
-- `.github/workflows/ci.yml`
+GitHub Actions workflow: - Builds Docker image - Runs container -
+Performs smoke test on game pages
 
 ## Notes
+
 - The game stores the best score locally using `localStorage`.
-- This project is a **standalone application** and can be deployed independently.
 
 ## License
+
 For educational use.
