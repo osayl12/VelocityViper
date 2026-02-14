@@ -12,6 +12,7 @@ html,
 body {
   height: 100%;
   overflow: hidden;
+  overscroll-behavior: none;
 }
 
 /* =========================
@@ -100,8 +101,21 @@ body {
 }
 
 @keyframes shieldPulse {
-  from { box-shadow: 0 0 10px cyan; }
-  to   { box-shadow: 0 0 40px cyan; }
+  from {
+    box-shadow: 0 0 10px cyan;
+  }
+  to {
+    box-shadow: 0 0 40px cyan;
+  }
+}
+
+/*touch control*/
+#touch-controls button {
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /*Speed Boost Effect*/
@@ -113,15 +127,19 @@ body {
   position: absolute;
   width: 50px;
   height: 100px;
-  background: rgba(0,255,255,0.3);
+  background: rgba(0, 255, 255, 0.3);
   filter: blur(10px);
   z-index: 1;
   animation: fadeTrail 0.5s forwards;
 }
 
 @keyframes fadeTrail {
-  from { opacity: 1; }
-  to { opacity: 0; }
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
 }
 
 /* Power Popup */
@@ -141,8 +159,14 @@ body {
 }
 
 @keyframes fadeOut {
-  0% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
-  100% { opacity: 0; transform: translate(-50%, -60%) scale(1.2); }
+  0% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translate(-50%, -60%) scale(1.2);
+  }
 }
 
 /* =========================

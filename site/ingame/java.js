@@ -534,16 +534,32 @@ function setupTouchControls() {
   const up = document.getElementById("btn-up");
   const down = document.getElementById("btn-down");
 
-  left.ontouchstart = () => (horizontalSpeed = -1);
-  right.ontouchstart = () => (horizontalSpeed = 1);
-  up.ontouchstart = () => (verticalSpeed = 1);
-  down.ontouchstart = () => (verticalSpeed = -1);
+  left.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    horizontalSpeed = -1;
+  });
+
+  right.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    horizontalSpeed = 1;
+  });
+
+  up.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    verticalSpeed = 1;
+  });
+
+  down.addEventListener("touchstart", (e) => {
+    e.preventDefault();
+    verticalSpeed = -1;
+  });
 
   [left, right, up, down].forEach((btn) => {
-    btn.ontouchend = () => {
+    btn.addEventListener("touchend", (e) => {
+      e.preventDefault();
       horizontalSpeed = 0;
       verticalSpeed = 0;
-    };
+    });
   });
 }
 
