@@ -505,13 +505,31 @@ function checkMysteryBoxCollision() {
 
 /* ---------- MUSIC ---------- */
 let musicStarted = false;
+
 function startMusicOnce() {
   if (musicStarted) return;
+  if (!audioEl) return;
+
   audioEl.muted = false;
   audioEl.loop = true;
-  audioEl.play().catch(() => {});
-  musicStarted = true;
+  audioEl.volume = 0.7; // optional (0.0 - 1.0)
+
+  const playPromise = audioEl.play();
+
+  if (playPromise !== undefined) {
+    playPromise
+      .then(() => {
+        musicStarted = true;
+      })
+      .catch((error) => {
+        console.log("Music blocked by browser:", error);
+      });
+  }
 }
+document.addEventListener("click", startMusicOnce, { once: true });
+document.addEventListener("touchstart", startMusicOnce, { once: true });
+document.addEventListener("keydown", startMusicOnce, { once: true });
+
 /* ---------- MAIN LOOP ---------- */
 function animate() {
   if (gameStarted && !gamePaused) {
