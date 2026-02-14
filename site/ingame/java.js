@@ -117,7 +117,6 @@ function updateFuel() {
   setFuelText();
   if (fuel === 0) gameOver();
 }
-
 function increaseFuel() {
   fuel = Math.min(100, fuel + 20);
   setFuelText();
@@ -323,8 +322,6 @@ if (controlsOverlay) {
   });
 }
 
-
-
 /* ---------- ROAD LINES ---------- */
 const lines2Positions = [200, 0, -200, -400];
 const leftLinePositions = [200, 0, -200, -400];
@@ -488,6 +485,24 @@ function removeMysteryBox() {
   setTimeout(showMysteryBox, 10000);
 }
 
+function checkMysteryBoxCollision() {
+  if (mysteryBox.style.display === "none") return;
+
+  const carRect = car.getBoundingClientRect();
+  const boxRect = mysteryBox.getBoundingClientRect();
+
+  const collided =
+    carRect.left < boxRect.right &&
+    carRect.right > boxRect.left &&
+    carRect.top < boxRect.bottom &&
+    carRect.bottom > boxRect.top;
+
+  if (collided) {
+    activateRandomPowerUp();
+    removeMysteryBox();
+  }
+}
+
 /* ---------- MUSIC ---------- */
 let musicStarted = false;
 function startMusicOnce() {
@@ -506,6 +521,7 @@ function animate() {
     moveEnemyCars();
     moveTrees();
     updateScore();
+    checkMysteryBoxCollision();
   }
   requestAnimationFrame(animate);
 }
@@ -548,7 +564,6 @@ function showPowerMessage(type) {
 /* ---------- START ---------- */
 setupTouchControls();
 animate();
-
 
 /* ---------- GAME OVER ---------- */
 function gameOver() {
