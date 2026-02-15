@@ -4,10 +4,6 @@ A retro-style browser racing game built with **HTML, CSS, and Vanilla
 JavaScript**, fully containerized using **Docker** and deployed with
 **Nginx**.
 
-Live Demo: 👉 https://velocityviper.duckdns.org/menugame/menu.html
-
-Repository: 👉 https://github.com/osayl12/VelocityViper
-
 ---
 
 ## 🎮 About The Project
@@ -74,22 +70,35 @@ Open: http://localhost:8082/
 
 ---
 
-## 🐳 Run On Web
+##  🌍 Live Website
 
-Link to the web: https://velocityviper.duckdns.org/
+🔗 https://velocityviper.duckdns.org/
+
+Hosted on: - Oracle Cloud (Ubuntu VM) - DuckDNS subdomain - Docker +
+Nginx
 
 ---
 
-## CI (GitHub Actions)
-
-T## ⚙️ CI
+##⚙️ CI (GitHub Actions)
 
 GitHub Actions workflow: - Builds Docker image - Runs container -
 Performs smoke test on game pages
 
+------------------------------------------------------------------------
+
+## ☁ Infrastructure
+
+- Cloud Provider: Oracle Cloud
+- VM OS: Ubuntu
+- Deployment via SSH from GitHub Actions
+
+------------------------------------------------------------------------
+
 ## Notes
 
 - The game stores the best score locally using `localStorage`.
+
+------------------------------------------------------------------------
 
 ## License
 
